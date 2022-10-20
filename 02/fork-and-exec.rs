@@ -7,27 +7,25 @@ use nix::{
 };
 use std::ffi::CString;
 
-fn main() -> Result<(), Error<dyn Error>> {
-    match unsafe { fork() } {
-        Ok(ForkResult::Parent { child, .. }) => {
-            println!("親プロセス: pid={}, 子プロセスのpid={}", getpid(), child);
-            waitpid(child, None).unwrap();
-        }
-        Ok(ForkResult::Child) => {
-            let cmd = CString::new("/bin/echo").expect("CString::new failed");
-            let args = [
-                CString::new("echo")?,
-                CString::new(format!("pid={} からこんにちは", getpid()))
-                    .expect("CString::new failed"),
-            ];
-            let env = CString::new("").expect("CString::new failed");
-            println!(
-                "子プロセス: pid={}, 親プロセスのpid={}",
-                getpid(),
-                getppid()
-            );
-            execve(&cmd, &args, &[env]).expect("execve failed");
-        }
-        Err(_) => unsafe { libc::_exit(1) },
+match unsafe { fork() } {
+    Ok(ForkResult::Parent { child, .. }) => {
+        println!("親プロセス: pid={}, 子プロセスのpid={}", getpid(), child);
+        waitpid(child, None).unwrap();
     }
+    Ok(ForkResult::Child) => {
+        let cmd = CString::new("/bin/echo").expect("CString::new failed");
+        let args = [
+            CString::new("echo")?,
+            CString::new(format!("pid={} からこんにちは", getpid()))
+                .expect("CString::new failed"),
+        ];
+        let env = CString::new("").expect("CString::new failed");
+        println!(
+            "子プロセス: pid={}, 親プロセスのpid={}",
+            getpid(),
+            getppid()
+        );
+        execve(&cmd, &args, &[env]).expect("execve failed");
+    }
+    Err(_) => unsafe { libc::_exit(1) },
 }
