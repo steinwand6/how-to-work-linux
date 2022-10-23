@@ -36,6 +36,6 @@ fn estimate_loops_per_msec() {
     let end = time::Instant::now();
     println!(
         "{:?}",
-        NLOOP_FOR_ESTIMATION as u128 / end.duration_since(start).as_millis() / 1000
+        NLOOP_FOR_ESTIMATION as u128 / end.duration_since(start).as_millis()
     );
 }
