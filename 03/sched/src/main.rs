@@ -4,10 +4,7 @@ use nix::{
     unistd::{self, fork, ForkResult},
 };
 use std::time::{self, Duration};
-use std::{
-    fs::{File, OpenOptions},
-    io::Write,
-};
+use std::{fs::File, io::Write};
 
 const NLOOP_FOR_ESTIMATION: usize = 100000000;
 
