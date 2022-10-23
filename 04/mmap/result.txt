@@ -1,0 +1,61 @@
+新規メモリ領域獲得前のメモリマップ
+55b2db4e0000-55b2db4e7000 r--p 00000000 103:02 3540402                   /home/tomo/Documents/how_to_work_linux/04/mmap/target/debug/mmap
+55b2db4e7000-55b2db530000 r-xp 00007000 103:02 3540402                   /home/tomo/Documents/how_to_work_linux/04/mmap/target/debug/mmap
+55b2db530000-55b2db543000 r--p 00050000 103:02 3540402                   /home/tomo/Documents/how_to_work_linux/04/mmap/target/debug/mmap
+55b2db543000-55b2db547000 r--p 00063000 103:02 3540402                   /home/tomo/Documents/how_to_work_linux/04/mmap/target/debug/mmap
+55b2db547000-55b2db548000 rw-p 00067000 103:02 3540402                   /home/tomo/Documents/how_to_work_linux/04/mmap/target/debug/mmap
+55b2dc26e000-55b2dc28f000 rw-p 00000000 00:00 0                          [heap]
+7f05f1fe3000-7f05f1fe6000 rw-p 00000000 00:00 0 
+7f05f1fe6000-7f05f2008000 r--p 00000000 103:02 16917785                  /usr/lib/libc.so.6
+7f05f2008000-7f05f2163000 r-xp 00022000 103:02 16917785                  /usr/lib/libc.so.6
+7f05f2163000-7f05f21ba000 r--p 0017d000 103:02 16917785                  /usr/lib/libc.so.6
+7f05f21ba000-7f05f21be000 r--p 001d4000 103:02 16917785                  /usr/lib/libc.so.6
+7f05f21be000-7f05f21c0000 rw-p 001d8000 103:02 16917785                  /usr/lib/libc.so.6
+7f05f21c0000-7f05f21cd000 rw-p 00000000 00:00 0 
+7f05f21cd000-7f05f21d0000 r--p 00000000 103:02 16912921                  /usr/lib/libgcc_s.so.1
+7f05f21d0000-7f05f21e7000 r-xp 00003000 103:02 16912921                  /usr/lib/libgcc_s.so.1
+7f05f21e7000-7f05f21eb000 r--p 0001a000 103:02 16912921                  /usr/lib/libgcc_s.so.1
+7f05f21eb000-7f05f21ec000 r--p 0001d000 103:02 16912921                  /usr/lib/libgcc_s.so.1
+7f05f21ec000-7f05f21ed000 rw-p 0001e000 103:02 16912921                  /usr/lib/libgcc_s.so.1
+7f05f220c000-7f05f220d000 ---p 00000000 00:00 0 
+7f05f220d000-7f05f2211000 rw-p 00000000 00:00 0 
+7f05f2211000-7f05f2212000 r--p 00000000 103:02 16917776                  /usr/lib/ld-linux-x86-64.so.2
+7f05f2212000-7f05f2238000 r-xp 00001000 103:02 16917776                  /usr/lib/ld-linux-x86-64.so.2
+7f05f2238000-7f05f2242000 r--p 00027000 103:02 16917776                  /usr/lib/ld-linux-x86-64.so.2
+7f05f2242000-7f05f2244000 r--p 00031000 103:02 16917776                  /usr/lib/ld-linux-x86-64.so.2
+7f05f2244000-7f05f2246000 rw-p 00033000 103:02 16917776                  /usr/lib/ld-linux-x86-64.so.2
+7ffda58cd000-7ffda58ef000 rw-p 00000000 00:00 0                          [stack]
+7ffda59eb000-7ffda59ef000 r--p 00000000 00:00 0                          [vvar]
+7ffda59ef000-7ffda59f1000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
+新規メモリ領域： アドレス = 0x7f05b1fe3000, サイズ = 0x40000000
+新規メモリ領域獲得後のメモリマップ
+55b2db4e0000-55b2db4e7000 r--p 00000000 103:02 3540402                   /home/tomo/Documents/how_to_work_linux/04/mmap/target/debug/mmap
+55b2db4e7000-55b2db530000 r-xp 00007000 103:02 3540402                   /home/tomo/Documents/how_to_work_linux/04/mmap/target/debug/mmap
+55b2db530000-55b2db543000 r--p 00050000 103:02 3540402                   /home/tomo/Documents/how_to_work_linux/04/mmap/target/debug/mmap
+55b2db543000-55b2db547000 r--p 00063000 103:02 3540402                   /home/tomo/Documents/how_to_work_linux/04/mmap/target/debug/mmap
+55b2db547000-55b2db548000 rw-p 00067000 103:02 3540402                   /home/tomo/Documents/how_to_work_linux/04/mmap/target/debug/mmap
+55b2dc26e000-55b2dc28f000 rw-p 00000000 00:00 0                          [heap]
+7f05b1fe3000-7f05f1fe6000 rw-p 00000000 00:00 0 
+7f05f1fe6000-7f05f2008000 r--p 00000000 103:02 16917785                  /usr/lib/libc.so.6
+7f05f2008000-7f05f2163000 r-xp 00022000 103:02 16917785                  /usr/lib/libc.so.6
+7f05f2163000-7f05f21ba000 r--p 0017d000 103:02 16917785                  /usr/lib/libc.so.6
+7f05f21ba000-7f05f21be000 r--p 001d4000 103:02 16917785                  /usr/lib/libc.so.6
+7f05f21be000-7f05f21c0000 rw-p 001d8000 103:02 16917785                  /usr/lib/libc.so.6
+7f05f21c0000-7f05f21cd000 rw-p 00000000 00:00 0 
+7f05f21cd000-7f05f21d0000 r--p 00000000 103:02 16912921                  /usr/lib/libgcc_s.so.1
+7f05f21d0000-7f05f21e7000 r-xp 00003000 103:02 16912921                  /usr/lib/libgcc_s.so.1
+7f05f21e7000-7f05f21eb000 r--p 0001a000 103:02 16912921                  /usr/lib/libgcc_s.so.1
+7f05f21eb000-7f05f21ec000 r--p 0001d000 103:02 16912921                  /usr/lib/libgcc_s.so.1
+7f05f21ec000-7f05f21ed000 rw-p 0001e000 103:02 16912921                  /usr/lib/libgcc_s.so.1
+7f05f220c000-7f05f220d000 ---p 00000000 00:00 0 
+7f05f220d000-7f05f2211000 rw-p 00000000 00:00 0 
+7f05f2211000-7f05f2212000 r--p 00000000 103:02 16917776                  /usr/lib/ld-linux-x86-64.so.2
+7f05f2212000-7f05f2238000 r-xp 00001000 103:02 16917776                  /usr/lib/ld-linux-x86-64.so.2
+7f05f2238000-7f05f2242000 r--p 00027000 103:02 16917776                  /usr/lib/ld-linux-x86-64.so.2
+7f05f2242000-7f05f2244000 r--p 00031000 103:02 16917776                  /usr/lib/ld-linux-x86-64.so.2
+7f05f2244000-7f05f2246000 rw-p 00033000 103:02 16917776                  /usr/lib/ld-linux-x86-64.so.2
+7ffda58cd000-7ffda58ef000 rw-p 00000000 00:00 0                          [stack]
+7ffda59eb000-7ffda59ef000 r--p 00000000 00:00 0                          [vvar]
+7ffda59ef000-7ffda59f1000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
