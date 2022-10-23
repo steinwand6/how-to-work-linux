@@ -3,7 +3,7 @@ use nix::{
     sys::wait,
     unistd::{self, fork, ForkResult},
 };
-use std::time::{self, Duration};
+use std::time;
 use std::{fs::File, io::Write};
 
 const NLOOP_FOR_ESTIMATION: usize = 100000000;
@@ -57,14 +57,20 @@ fn estimate_loops_per_msec() -> u128 {
 }
 
 fn child_fn(n: usize, nloop: u128, start: time::Instant) {
-    let mut progress: [Duration; 100] = [Duration::ZERO; 100];
+    let mut progress: [Option<time::Instant>; 100] = [None; 100];
     for i in 0..100 {
         for _ in 0..nloop {}
-        progress[i] = time::Instant::now().duration_since(start);
+        progress[i] = Some(time::Instant::now());
     }
     let mut f = File::create(format!("{}.data", n)).expect("create file failed");
     for i in 0..100 {
-        write!(f, "{}\t{}\n", progress[i].as_secs_f64() * 1000.0, i).expect("write file failed");
+        writeln!(
+            f,
+            "{}\t{}",
+            progress[i].unwrap().duration_since(start).as_secs_f64() * 1000.0,
+            i
+        )
+        .expect("write file failed");
     }
     unsafe { libc::_exit(0) };
 }
