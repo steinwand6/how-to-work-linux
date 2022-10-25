@@ -1,8 +1,9 @@
 use nix::libc::{_exit, size_t};
-use nix::sys::mman::{mmap, MapFlags, ProtFlags};
-use nix::sys::wait::waitpid;
-use nix::unistd::ForkResult;
-use nix::unistd::{fork, getpid};
+use nix::sys::{
+    mman::{mmap, MapFlags, ProtFlags},
+    wait::waitpid,
+};
+use nix::unistd::{fork, getpid, ForkResult};
 use std::ffi::c_void;
 use std::io::Write;
 use std::os::raw::c_int;
