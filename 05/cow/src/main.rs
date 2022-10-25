@@ -42,7 +42,7 @@ fn show_meminfo(msg: &str, process: &str) {
 }
 
 fn main() {
-    let mut data = unsafe {
+    let data = unsafe {
         mmap(
             ptr::null_mut(),
             ALLOC_SIZE,
@@ -54,6 +54,7 @@ fn main() {
         .expect("mmap failed")
     };
     access(data);
+    show_meminfo("*** 子プロセス生成前 ***", "親プロセス");
     match unsafe { fork() } {
         Ok(ForkResult::Child) => {
             show_meminfo("*** 子プロセス生成直後 ***", "子プロセス");
@@ -62,7 +63,7 @@ fn main() {
             unsafe { _exit(0) };
         }
         Ok(ForkResult::Parent { child, .. }) => {
-            waitpid(child, None);
+            waitpid(child, None).expect("waitpid failed");
         }
         Err(_) => unsafe { _exit(1) },
     }
