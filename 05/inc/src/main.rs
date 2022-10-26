@@ -1,35 +1,28 @@
-use std::{
-    fs::{File, OpenOptions},
-    io::{Read, Write},
-    path::Path,
-};
+use std::path::Path;
+
+use nix::fcntl::{flock, open, FlockArg, OFlag};
+use nix::sys::stat::Mode;
+use nix::unistd::{read, write};
 
 fn main() {
     let path = Path::new("count");
-    let mut file = match File::open(path) {
-        Ok(file) => file,
-        Err(e) => {
-            println!("open failed: {}", e);
-            return;
-        }
-    };
-    let mut content = String::new();
-    let mut count: i64 = match file.read_to_string(&mut content) {
-        Ok(_) => content.parse().expect("parse failed"),
-        Err(e) => {
-            println!("parse failed: {}", e);
-            return;
-        }
-    };
+    let fd = open(path, OFlag::O_RDWR, Mode::empty()).unwrap_or(-1);
+    flock(fd, FlockArg::LockExclusive).expect("flock failed");
+
+    let mut buf = [0u8; 8];
+    read(fd, &mut buf).expect("read failed");
+    let content = buf
+        .iter()
+        .filter(|b| **b != 0)
+        .map(|b| *b as char)
+        .collect::<String>();
+    let mut count: i64 = content
+        .parse()
+        .expect(format!("parse error: {}", content).as_str());
     count += 1;
-    match OpenOptions::new().write(true).open(path) {
-        Ok(mut file) => {
-            file.write(count.to_string().as_bytes())
-                .expect("write failed");
-        }
-        Err(e) => {
-            println!("{}", e);
-            return;
-        }
-    }
+    let content = count.to_string().into_bytes();
+
+    let fd = open(path, OFlag::O_WRONLY | OFlag::O_TRUNC, Mode::empty()).unwrap_or(-1);
+    write(fd, &content).expect("write failed");
+    flock(fd, FlockArg::Unlock).expect("unlock failed");
 }
