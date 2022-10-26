@@ -6,7 +6,7 @@ use nix::unistd::{read, write};
 
 fn main() {
     let path = Path::new("count");
-    let fd = open(path, OFlag::O_RDWR, Mode::empty()).unwrap_or(-1);
+    let fd = open(path, OFlag::O_RDWR, Mode::empty()).expect("open failed");
     flock(fd, FlockArg::LockExclusive).expect("flock failed");
 
     let mut buf = [0u8; 8];
@@ -22,7 +22,7 @@ fn main() {
     count += 1;
     let content = count.to_string().into_bytes();
 
-    let fd = open(path, OFlag::O_WRONLY | OFlag::O_TRUNC, Mode::empty()).unwrap_or(-1);
+    let fd = open(path, OFlag::O_WRONLY | OFlag::O_TRUNC, Mode::empty()).expect("open failed");
     write(fd, &content).expect("write failed");
     flock(fd, FlockArg::Unlock).expect("unlock failed");
 }
