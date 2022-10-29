@@ -35,12 +35,10 @@ fn main() -> Result<(), Box<dyn Error>> {
             bufsize / 1024
         );
         let start = time::Instant::now();
-        let trytimes = NACCESS / (bufsize / CACHE_LINE_SIZE);
-        for _ in 0..trytimes {
-            for j in (0..bufsize).skip(CACHE_LINE_SIZE) {
-                unsafe {
-                    (data.add(j) as *mut u8).write(0);
-                }
+        let data = data as *mut u8;
+        for _ in (0..(NACCESS / (bufsize / CACHE_LINE_SIZE))).into_iter() {
+            for j in (0..bufsize).step_by(CACHE_LINE_SIZE).into_iter() {
+                unsafe { data.add(j).write(0) };
             }
         }
         let end = time::Instant::now().duration_since(start).as_nanos();
