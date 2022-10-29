@@ -1,9 +1,5 @@
+use nix::sys::mman::{mmap, MapFlags, ProtFlags};
 use std::{error::Error, fs::OpenOptions, io::Write, os::raw::c_void, ptr, time};
-
-use nix::{
-    self,
-    sys::mman::{mmap, MapFlags, ProtFlags},
-};
 
 const CACHE_LINE_SIZE: usize = 64;
 const NACCESS: usize = 128 * 1024 * 1024;
